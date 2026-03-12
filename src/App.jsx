@@ -3,6 +3,9 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+
+const articles = ['Article 1', 'Article 2', 'Article 3', ' Article 4',]
+
 function App() {
 
   /*
@@ -25,13 +28,20 @@ function App() {
 
       <div className="mb-5">
         <div className="row row-cols-4 g-3">
-          <div>
-            <div className="card">
-              <div className="card-body">
-                <h2 className="h4">Article</h2>
+          {
+
+            articles.map(article => (
+              <div>
+                <div className="card">
+                  <div className="card-body">
+                    <h2 className="h4">{article}</h2>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            ))
+
+          }
+
         </div>
       </div>
 
