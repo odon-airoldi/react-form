@@ -26,8 +26,8 @@ function App() {
 
   const [newArticle, setNewArticle] = useState('')
   const [updateArticles, setUpdateArticles] = useState(articles)
-  const [message, setMessage] = useState('Enter the title')
 
+  const [message, setMessage] = useState('Enter the title')
   const [classMessage, setClassMessage] = useState('')
 
 
@@ -44,7 +44,7 @@ function App() {
 
     if (newArticle.length > 0) {
 
-      setUpdateArticles([newArticle, ...updateArticles])
+      setUpdateArticles([...updateArticles, newArticle])
 
     }
     else {
@@ -55,6 +55,14 @@ function App() {
     setNewArticle('')
 
   }
+
+  function removeArticle(i) {
+
+    const notRemovedArticles = updateArticles.filter((updateArticles, index) => index != i)
+    setUpdateArticles(notRemovedArticles)
+
+  }
+
 
 
 
@@ -68,8 +76,10 @@ function App() {
             updateArticles.map((article, index) => (
               <div key={index}>
                 <div className="card">
-                  <div className="card-body">
-                    <h2 className="h4">{article}</h2>
+                  <div className="card-body position-relative">
+                    <h2 className="card-title h4">{article}</h2>
+                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+                    <button className="btn btn-sm btn-danger py-0 m-1 position-absolute bottom-0 end-0 text-uppercase" onClick={() => removeArticle(index)}>Remove</button>
                   </div>
                 </div>
               </div>
