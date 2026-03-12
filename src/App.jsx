@@ -63,6 +63,15 @@ function App() {
 
   }
 
+  function editArticle(i) {
+
+    const editArticles = [...updateArticles]
+    editArticles[i] = 'Edit Title'
+    console.log(updateArticles[i])
+
+    setUpdateArticles(editArticles)
+  }
+
 
 
 
@@ -79,7 +88,10 @@ function App() {
                   <div className="card-body position-relative">
                     <h2 className="card-title h4">{article}</h2>
                     <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-                    <button className="btn btn-sm btn-danger py-0 m-1 position-absolute bottom-0 end-0 text-uppercase" onClick={() => removeArticle(index)}>Remove</button>
+                    <div className="m-1 position-absolute bottom-0 end-0">
+                      <button className="btn btn-sm btn-secondary py-0 text-uppercase" onClick={() => editArticle(index)}>Edit</button>
+                      <button className="btn btn-sm btn-danger py-0 text-uppercase" onClick={() => removeArticle(index)}>Remove</button>
+                    </div>
                   </div>
                 </div>
               </div>
