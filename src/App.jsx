@@ -26,6 +26,7 @@ function App() {
 
   const [newArticle, setNewArticle] = useState('')
   const [updateArticles, setUpdateArticles] = useState(articles)
+  const [message, setMessage] = useState('Enter the title')
 
 
   function handleInput(e) {
@@ -39,9 +40,16 @@ function App() {
 
     e.preventDefault()
 
-    setUpdateArticles([newArticle, ...updateArticles])
+    if (newArticle.length > 0) {
 
-    console.log(updateArticles)
+      setUpdateArticles([newArticle, ...updateArticles])
+
+    }
+    else {
+      setMessage('Add the title of the new article')
+    }
+
+    setNewArticle('')
 
   }
 
@@ -69,14 +77,18 @@ function App() {
         </div>
       </div>
 
-      <div className="p-5 bg-light">
+      <div className="p-4 bg-light rounded-2">
+        <h2 className="h4">Add new article</h2>
         <form onSubmit={handleSubmit}>
-          <div className="d-flex">
+          <div className="row gx-2">
             <div className="col">
               <input className="form-control" type="text" value={newArticle} onChange={handleInput} />
+              {
+                <small>{message}</small>
+              }
             </div>
             <div className="col-auto">
-              <button className="btn btn-primary" type="submit">Add article</button>
+              <button className="btn btn-primary" type="submit">Add</button>
             </div>
           </div>
         </form>
