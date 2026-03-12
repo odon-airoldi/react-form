@@ -28,6 +28,8 @@ function App() {
   const [updateArticles, setUpdateArticles] = useState(articles)
   const [message, setMessage] = useState('Enter the title')
 
+  const [classMessage, setClassMessage] = useState('')
+
 
   function handleInput(e) {
 
@@ -47,6 +49,7 @@ function App() {
     }
     else {
       setMessage('Add the title of the new article')
+      setClassMessage('text-danger')
     }
 
     setNewArticle('')
@@ -84,7 +87,7 @@ function App() {
             <div className="col">
               <input className="form-control" type="text" value={newArticle} onChange={handleInput} />
               {
-                <small>{message}</small>
+                <small className={classMessage}>{message}</small>
               }
             </div>
             <div className="col-auto">
