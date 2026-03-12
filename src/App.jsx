@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 
-const articles = ['Article 1', 'Article 2', 'Article 3', ' Article 4',]
+
 
 function App() {
 
@@ -22,6 +22,30 @@ function App() {
   Implementare la funzionalità di modifica del titolo di un post.
   Impostare il lavoro su più componenti.
   */
+  const articles = ['Article 1', 'Article 2', 'Article 3', 'Article 4']
+
+  const [newArticle, setNewArticle] = useState('')
+  const [updateArticles, setUpdateArticles] = useState(articles)
+
+
+  function handleInput(e) {
+
+
+    setNewArticle(e.target.value)
+
+  }
+
+  function handleSubmit(e) {
+
+    e.preventDefault()
+
+    setUpdateArticles([newArticle, ...updateArticles])
+
+    console.log(updateArticles)
+
+  }
+
+
 
   return (
     <div className="container py-5">
@@ -30,8 +54,8 @@ function App() {
         <div className="row row-cols-4 g-3">
           {
 
-            articles.map(article => (
-              <div>
+            updateArticles.map((article, index) => (
+              <div key={index}>
                 <div className="card">
                   <div className="card-body">
                     <h2 className="h4">{article}</h2>
@@ -46,10 +70,14 @@ function App() {
       </div>
 
       <div className="p-5 bg-light">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="d-flex">
-            <div className="col"><input className="form-control" type="text" /></div>
-            <div className="col-auto"><button className="btn btn-primary" type="submit">Add article</button></div>
+            <div className="col">
+              <input className="form-control" type="text" value={newArticle} onChange={handleInput} />
+            </div>
+            <div className="col-auto">
+              <button className="btn btn-primary" type="submit">Add article</button>
+            </div>
           </div>
         </form>
       </div>
