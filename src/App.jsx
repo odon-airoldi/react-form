@@ -23,8 +23,26 @@ function App() {
   return (
     <div className="container py-5">
 
+      <div className="mb-5">
+        <div className="row row-cols-4 g-3">
+          <div>
+            <div className="card">
+              <div className="card-body">
+                <h2 className="h4">Article</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-
+      <div className="p-5 bg-light">
+        <form>
+          <div className="d-flex">
+            <div className="col"><input className="form-control" type="text" /></div>
+            <div className="col-auto"><button className="btn btn-primary" type="submit">Add article</button></div>
+          </div>
+        </form>
+      </div>
 
 
     </div>
