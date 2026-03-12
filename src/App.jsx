@@ -27,24 +27,37 @@ function App() {
   const [newArticle, setNewArticle] = useState('')
   const [updateArticles, setUpdateArticles] = useState(articles)
 
+  const [titleForm, setTitleForm] = useState('Add new article')
   const [message, setMessage] = useState('Enter the title')
   const [classMessage, setClassMessage] = useState('')
 
 
-  function handleInput(e) {
+  const [prova, setProva] = useState(null)
 
+  // input
+  function handleInput(e) {
 
     setNewArticle(e.target.value)
 
   }
 
+  // submit
   function handleSubmit(e) {
 
     e.preventDefault()
 
     if (newArticle.length > 0) {
 
-      setUpdateArticles([...updateArticles, newArticle])
+      if (prova != null) {
+
+        console.log(updateArticles[prova])
+
+        updateArticles[prova] = newArticle
+
+      }
+      else {
+        setUpdateArticles([...updateArticles, newArticle])
+      }
 
     }
     else {
@@ -56,6 +69,7 @@ function App() {
 
   }
 
+  // remove article
   function removeArticle(i) {
 
     const notRemovedArticles = updateArticles.filter((updateArticles, index) => index != i)
@@ -63,13 +77,19 @@ function App() {
 
   }
 
+  // edit article
   function editArticle(i) {
 
-    const editArticles = [...updateArticles]
-    editArticles[i] = 'Edit Title'
-    console.log(updateArticles[i])
+    setProva(i)
+    setTitleForm('Edit the article')
 
-    setUpdateArticles(editArticles)
+
+
+    // const updateEditArticles = [...updateArticles]
+    // updateEditArticles[i] = newArticle
+
+    // setUpdateArticles(updateEditArticles)
+
   }
 
 
@@ -89,7 +109,7 @@ function App() {
                     <h2 className="card-title h4">{article}</h2>
                     <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
                     <div className="m-1 position-absolute bottom-0 end-0">
-                      <button className="btn btn-sm btn-secondary py-0 text-uppercase" onClick={() => editArticle(index)}>Edit</button>
+                      <button className="btn btn-sm btn-secondary py-0 text-uppercase me-1" onClick={() => editArticle(index)}>Edit</button>
                       <button className="btn btn-sm btn-danger py-0 text-uppercase" onClick={() => removeArticle(index)}>Remove</button>
                     </div>
                   </div>
@@ -98,12 +118,11 @@ function App() {
             ))
 
           }
-
         </div>
       </div>
 
       <div className="p-4 bg-light rounded-2">
-        <h2 className="h4">Add new article</h2>
+        <h2 className="h4">{titleForm}</h2>
         <form onSubmit={handleSubmit}>
           <div className="row gx-2">
             <div className="col">
